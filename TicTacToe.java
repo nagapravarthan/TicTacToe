@@ -1,45 +1,73 @@
 import java.util.Scanner;
-class TicTacToe
-{
-  public static void main(String[] args)
-  {
-     System.out.println("Welcome to Tic Tac Toe Game");
-     System.out.println("Choose a letter o or x : ");
-     Scanner s = new Scanner(System.in);
-     char letter = s.next().charAt(0);
-     char Choice;
-     chooseLetter(letter);
-     Board();
-   }
 
-     public static void Board()
-     {
+public class TicTacToe {
+private static char[] Board() {
+		char[] boardArray = new char[11];
+		for(char c : boardArray) {
+			c = ' ';
+		}
+		return boardArray;
+	}
+	
+private static void ChooseLetter() {
+	
+	char firstCharacterInput = ' ';
+	char computerCharacterInput = ' ';
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.println("Enter input Mr. player");
+	System.out.println("Enter 'X' or 'O' : ");
+	firstCharacterInput = sc.next().charAt(0);
+	
+	switch (firstCharacterInput) {
+	case 'X': {
+		firstCharacterInput = 'X';
+		computerCharacterInput = 'O';
+		break;
+	}
+	case 'O': {
+		firstCharacterInput = 'O';
+		computerCharacterInput = 'X';
+		break;
+	}
+	default:
+	}
+	
+	System.out.println("User input is : " + firstCharacterInput + " and computer input is : " + computerCharacterInput);
+	sc.close();
+}
 
-        char[] board =new char[8];
-        for(int i=0;i<=2;i++)
-        {
-          for(int j=0;j<=2;j++)
-          {
-                  System.out.print('-');
-                  System.out.print('|');
-          }
-           System.out.println();
-        }
-     }
 
-         public static void  chooseLetter(char letter)
-         {
-         switch(letter)
-          {
-            case 'o':
-              System.out.println("player entered letter: o");
-              System.out.println("computer choice is: x");
-              break;
-            case 'x':
-             System.out.println("player entered letter: x");
-             System.out.println("computer choice is: o");
-             break;
-           }
-        }
-
+private static void ShowBoard(char[] boardArray) {
+	System.out.println("-----THE BOARD-----");
+	System.out.println("___________________");
+	System.out.print("|  ");
+	for (char i = 1; i < 3; i++) {
+		System.out.print(boardArray[i] + "  |  ");
+	}
+	System.out.print(boardArray[3] + "  ");
+	System.out.print("|");
+	System.out.println();
+	System.out.println("___________________");
+	System.out.print("|  ");
+	for (char i = 4; i < 6; i++) {
+		System.out.print(boardArray[i] + "  |  ");
+	}
+	System.out.print(boardArray[6] + "  ");
+	System.out.print("|");
+	System.out.println();
+	System.out.println("___________________");
+	System.out.print("|  ");
+	for (char i = 7; i < 9; i++) {
+		System.out.print(boardArray[i] + "  |  ");
+	}
+	System.out.print(boardArray[9] + "  ");
+	System.out.println("|");
+	System.out.print("___________________");
+}
+public static void main(String[] args) {		
+	char[] boardArray = Board();
+	ChooseLetter();
+	ShowBoard(boardArray);
+}
 }
